@@ -173,11 +173,11 @@ function startGL()
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPosition), gl.STATIC_DRAW);
   vertexPositionBuffer.itemSize = 3; //zdefiniowanie liczby współrzednych per wierzchołek
-  vertexPositionBuffer.numItems = 78; //Zdefinoiowanie liczby punktów w naszym buforze
+  vertexPositionBuffer.numItems = 56; //Zdefinoiowanie liczby punktów w naszym buforze
   
   //Opis sceny 3D, kolor każdego z wierzchołków
   let vertexColor = [
-  //22 sciany labiryntu
+  //23 sciany labiryntu
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
 
@@ -189,12 +189,10 @@ function startGL()
 
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
   //5
-  0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
-    0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
-
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
 
@@ -203,12 +201,13 @@ function startGL()
 
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
+    0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
+    0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
   //10
-  0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
-    0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
-
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
 
@@ -217,12 +216,13 @@ function startGL()
 
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
+    0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
+    0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
   //15
-  0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
-    0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
-
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
 
@@ -231,6 +231,10 @@ function startGL()
 
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
+    0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
+    0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
   
@@ -239,6 +243,7 @@ function startGL()
 
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
+
     0.3, 0.05, 0.28,  0.5, 0.3, 0.6,  0.21, 0.65, 0.60,
     0.04, 0.44, 0.23,  0.11, 0.42, 0.75,  0.6, 0.56, 0.30,
 
@@ -258,8 +263,7 @@ function startGL()
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColor), gl.STATIC_DRAW);
   vertexColorBuffer.itemSize = 3;
-  vertexColorBuffer.numItems = 78;
-  
+  vertexColorBuffer.numItems = 56;
   
   //Macierze opisujące położenie wirtualnej kamery w przestrzenie 3D
   let aspect = gl.viewportWidth/gl.viewportHeight;
@@ -280,7 +284,9 @@ var angleZ = 0.0;
 var angleY = 0.0;
 var angleX = 0.0;
 var tz = -10.0;
-var tx = 0.0; 
+var tx = 0.0;
+var ty = 0.0;
+
 function Tick()
 {  
   let uMVMatrix = [
@@ -322,14 +328,23 @@ function Tick()
     1, 0, 0, 0,
     0, 1, 0, 0,
     0, 0, 1, 0,
-    tx, 0, 0, 1 // Uwzględnienie tx
+    tx, 0, 0, 1 
+  ];
+  let uMVTranslateY = [
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, ty, 0, 1 
   ];
 
   uMVMatrix = MatrixMul(uMVMatrix, uMVRotX);
-  uMVMatrix = MatrixMul(uMVMatrix, uMVRotY);
-  uMVMatrix = MatrixMul(uMVMatrix, uMVRotZ);
+  uPMatrix = MatrixMul(uMVRotY,uPMatrix );
+  uPMatrix = MatrixMul(uMVRotZ,uPMatrix );
   uMVMatrix = MatrixMul(uMVMatrix, uMVTranslateZ);
-  uMVMatrix = MatrixMul(uMVMatrix, uMVTranslateX); // Dodanie przekształcenia tx
+  uMVMatrix = MatrixMul(uMVMatrix, uMVTranslateX);
+  uMVMatrix = MatrixMul(uMVMatrix, uMVTranslateY);
+  angleY=0;
+  angleZ=0;
   
   //Render Scene
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight); 
@@ -358,17 +373,18 @@ function Tick()
 }
 function handlekeydown(e)
 {
- if(e.keyCode==87) angleX=angleX+1.0; //W
- if(e.keyCode==83) angleX=angleX-1.0; //S
- if(e.keyCode==68) angleY=angleY+1.0; //D
- if(e.keyCode==65) angleY=angleY-1.0; //A
- if(e.keyCode==81) angleZ=angleZ+1.0; //Q
- if(e.keyCode==69) angleZ=angleZ-1.0; //E
- if(e.keyCode==37) tx=tx+0.05; //Left arrow key - zmniejsza tx
- if(e.keyCode==39) tx=tx-0.05; //Right arrow key - zwiększa tx
- if(e.keyCode==38) tz=tz+0.05; // Up arrow key - ruch kamery do przodu (zmniejszenie wartości tz)
+ if(e.keyCode==87) angleX=angleX+5.0; 
+ if(e.keyCode==83) angleX=angleX-5.0; 
+ if(e.keyCode==68) angleY=angleY+5.0; 
+ if(e.keyCode==65) angleY=angleY-5.0; 
+ if(e.keyCode==81) angleZ=angleZ+5.0; 
+ if(e.keyCode==69) angleZ=angleZ-5.0; 
+ if(e.keyCode==37) tx=tx+0.05;
+ if(e.keyCode==39) tx=tx-0.05; 
+ if(e.keyCode==38) tz=tz+0.05; 
  if(e.keyCode==40) tz=tz-0.05;
 }
+
 </script>
 </head>
 <body onload="startGL()" onkeydown="handlekeydown(event)">
