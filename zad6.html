@@ -74,7 +74,7 @@ function createRectColor(r,g,b)
   return vertexColor;
 }
 
-function CreateShpere(x,y,z,radius, numStepsElevation, numStepsAngle)
+function CreateSphere(x,y,z,radius, numStepsElevation, numStepsAngle)
 {
   //Opis sceny 3D, położenie punktów w przestrzeni 3D w formacie X,Y,Z 
   let vertexPosition = []; //3 punkty po 3 składowe - X1,Y1,Z1, X2,Y2,Z2, X3,Y3,Z3 - 1 trójkąt
@@ -292,11 +292,11 @@ function startGL()
   let vertexPosition4, vertexColor4, vertexCoords4, vertexNormal4;
   
     // Generate vertex data for 4 spheres
-  [vertexPosition1, vertexColor1, vertexCoords1, vertexNormal1] = CreateShpere(-7, 0, 0, 2, 6, 12);
-  [vertexPosition2, vertexColor2, vertexCoords2, vertexNormal2] = CreateShpere(-3.5, 0.5, 0, 2, 6, 12);
-  [vertexPosition3, vertexColor3, vertexCoords3, vertexNormal3] = CreateShpere(0, 0, 0, 2, 6, 12);
-  [vertexPosition4, vertexColor4, vertexCoords4, vertexNormal4] = CreateShpere(3.5, 0.5, 0, 2, 6, 12);
-  [vertexPosition5, vertexColor5, vertexCoords5, vertexNormal5] = CreateShpere(7, 0.5, 0, 2, 6, 12);
+  [vertexPosition1, vertexColor1, vertexCoords1, vertexNormal1] = CreateSphere(-7, 0, 0, 2, 6, 12);
+  [vertexPosition2, vertexColor2, vertexCoords2, vertexNormal2] = CreateSphere(-3.5, 0.5, 0, 2, 6, 12);
+  [vertexPosition3, vertexColor3, vertexCoords3, vertexNormal3] = CreateSphere(0, 0, 0, 2, 6, 12);
+  [vertexPosition4, vertexColor4, vertexCoords4, vertexNormal4] = CreateSphere(3.5, 0.5, 0, 2, 6, 12);
+  [vertexPosition5, vertexColor5, vertexCoords5, vertexNormal5] = CreateSphere(7, 0.5, 0, 2, 6, 12);
 
   [vertexPositionBuffer1, vertexColorBuffer1, vertexCoordsBuffer1, vertexNormalBuffer1] = setBuffer(vertexPosition1, vertexColor1, vertexCoords1, vertexNormal1);
   [vertexPositionBuffer2, vertexColorBuffer2, vertexCoordsBuffer2, vertexNormalBuffer2] = setBuffer(vertexPosition2, vertexColor2, vertexCoords2, vertexNormal2);
