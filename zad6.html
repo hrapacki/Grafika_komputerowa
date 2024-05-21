@@ -325,8 +325,8 @@ var Object5PositionZ = 0;
 var Object5AngleX = 0.0;
 var Object5AngleZ = 20;
 //lewa reka - dół
-var Object6PositionX = -1.15;
-var Object6PositionY = -3.2;
+var Object6PositionX = -1.2;
+var Object6PositionY = -3.3;
 var Object6PositionZ = 0;
 var Object6AngleZ = -20;
 var Object6AngleX = 0.0;
@@ -645,7 +645,7 @@ function Tick()
 
   if(leftarm==true){
     if(backwardarm==false){
-    Object4AngleX=Object4AngleX-1;
+    Object4AngleX=Object4AngleX-0.75;
     Object5PositionZ =Object5PositionZ + 0.02;
     Object5PositionY =Object5PositionY + 0.001;
     Object5AngleX=Object5AngleX-0.5;
@@ -655,7 +655,7 @@ function Tick()
     }
     }
     else{
-      Object4AngleX=Object4AngleX+1;
+      Object4AngleX=Object4AngleX+0.75;
       Object5PositionZ =Object5PositionZ - 0.02;
       Object5PositionY =Object5PositionY - 0.001;
     Object5AngleX=Object5AngleX+0.5;
@@ -672,7 +672,7 @@ function Tick()
   }
   else{
     if(backwardarm==false){
-    Object3AngleX=Object3AngleX-1;
+    Object3AngleX=Object3AngleX-0.75;
     Object6PositionZ =Object6PositionZ + 0.02;
     Object6PositionY =Object6PositionY + 0.001;
     Object6AngleX=Object6AngleX-0.5;
@@ -682,7 +682,7 @@ function Tick()
     }
     }
     else{
-      Object3AngleX=Object3AngleX+1;
+      Object3AngleX=Object3AngleX+0.75;
       Object6PositionZ =Object6PositionZ - 0.02;
       Object6PositionY =Object6PositionY - 0.001;
       Object6AngleX=Object6AngleX+0.5;
@@ -699,7 +699,7 @@ function Tick()
   if(leftfoot==true){
   if(backward==false){
     Object1AngleX = Object1AngleX+0.1;
-    Object2AngleX = Object2AngleX+0.1;
+    Object2AngleX = Object2AngleX+0.15;
   Object7AngleX=Object7AngleX-0.75;
   Object9PositionY =Object9PositionY +0.005;
   Object9PositionZ =Object9PositionZ +0.01;
@@ -710,7 +710,7 @@ function Tick()
   }
   if(backward==true){
     Object1AngleX = Object1AngleX-0.1;
-    Object2AngleX = Object2AngleX-0.1;
+    Object2AngleX = Object2AngleX-0.15;
     Object7AngleX=Object7AngleX+0.75;
     Object9PositionY =Object9PositionY -0.005;
     Object9PositionZ =Object9PositionZ -0.01;
@@ -727,7 +727,7 @@ function Tick()
   else{
   if(backward==false){
     Object1AngleX = Object1AngleX+0.1;
-    Object2AngleX = Object2AngleX+0.1;
+    Object2AngleX = Object2AngleX+0.15;
   Object8AngleX=Object8AngleX-0.75;
   Object10PositionY =Object10PositionY + 0.005;
   Object10PositionZ =Object10PositionZ + 0.01;
@@ -738,7 +738,7 @@ function Tick()
   }
   if(backward==true){
     Object1AngleX = Object1AngleX-0.1;
-    Object2AngleX = Object2AngleX-0.1;
+    Object2AngleX = Object2AngleX-0.15;
     Object8AngleX=Object8AngleX+0.75;
     Object10PositionY =Object10PositionY -0.005;
   Object10PositionZ =Object10PositionZ - 0.01;
@@ -755,7 +755,7 @@ function Tick()
   Object1PositionZ = Object1PositionZ+0.01;
 
  }
- setTimeout(Tick,7);
+ setTimeout(Tick,6);
 }
 
 function handlekeydown(e)
@@ -771,16 +771,13 @@ function handlekeydown(e)
  //alert(angleX);
  
  //U I O J K L
- if(e.keyCode==76) LightPositionX=LightPositionX+0.1;
- if(e.keyCode==74) LightPositionX=LightPositionX-0.1;
- if(e.keyCode==73) LightPositionY=LightPositionY+0.1;
- if(e.keyCode==75) LightPositionY=LightPositionY-0.1;
- if(e.keyCode==85) LightPositionZ=LightPositionZ+0.1;
- if(e.keyCode==79) LightPositionZ=LightPositionZ-0.1;
+ if(e.keyCode==76) LightPositionX=LightPositionX+0.5;
+ if(e.keyCode==74) LightPositionX=LightPositionX-0.5;
+ if(e.keyCode==73) LightPositionY=LightPositionY+0.5;
+ if(e.keyCode==75) LightPositionY=LightPositionY-0.5;
+ if(e.keyCode==85) LightPositionZ=LightPositionZ+0.5;
+ if(e.keyCode==79) LightPositionZ=LightPositionZ-0.5;
  
- //Z X
- if(e.keyCode==88) Object1AngleZ=Object1AngleZ-0.5;
- if(e.keyCode==90) Object1AngleZ=Object1AngleZ+0.5;
 
  if(e.keyCode==67){
   if(move==false){
@@ -790,17 +787,12 @@ function handlekeydown(e)
     move=false
   }
  }
- //C V
- 
- //if(e.keyCode==86) Object7AngleX=Object7AngleX+0.5;
- 
- //B N
- if(e.keyCode==66) Object3AngleZ=Object3AngleZ-0.5;
- if(e.keyCode==78) Object3AngleZ=Object3AngleZ+0.5;
+
 }
 </script>
 </head>
 <body onload="startGL()" onkeydown="handlekeydown(event)">
 <canvas id="canvas3D" width="640" height="480" style="border: solid black 1px">;</canvas>
+Należy naciśnąć C, aby zatrzymać, wznowić ruch robota
 </body>
 </html>
