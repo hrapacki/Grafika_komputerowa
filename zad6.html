@@ -290,20 +290,20 @@ function startGL()
 //let angle = 45.0; //Macierz transformacji świata - określenie położenia kamery
 
 var angleZ = 0.0;
-var angleY = 0.0;
+var angleY = 60.0;
 var angleX = 0.0;
-var KameraPositionZ = -14.0;
+var KameraPositionZ = -40.0;
 //Glowa
 var Object1PositionX = -1.0;
 var Object1PositionY = 2.0; 
 var Object1PositionZ = 1.0;
-
+var Object1AngleX = 0.0;
 var Object1AngleZ = 0.0;
 //Cialo
 var Object2PositionX = -1;
 var Object2PositionY = -2.0;
 var Object2PositionZ = 0.0;
-
+var Object2AngleX = 0.0;
 var Object2AngleZ = 0.0;
 //Lewa Reka - gora
 var Object3PositionX = 1.0;
@@ -319,15 +319,15 @@ var Object4AngleX = 0.0;
 var Object4AngleZ = -20;
 
 //Prawa reka - dół
-var Object5PositionX = -0.5;
-var Object5PositionY = -1.7;
-var Object5PositionZ = 1;
+var Object5PositionX = -0.0;
+var Object5PositionY = -3.6;
+var Object5PositionZ = 0;
 var Object5AngleX = 0.0;
 var Object5AngleZ = 20;
 //lewa reka - dół
-var Object6PositionX = -1;
-var Object6PositionY = -1.1;
-var Object6PositionZ = 1;
+var Object6PositionX = -1.15;
+var Object6PositionY = -3.2;
+var Object6PositionZ = 0;
 var Object6AngleZ = -20;
 var Object6AngleX = 0.0;
 //lewa noga - góra
@@ -343,14 +343,14 @@ var Object8PositionZ = 0.2;
 var Object8AngleZ = 0;
 var Object8AngleX = -15;
 //lewa noga - dół
-var Object9PositionX = -0.9;
-var Object9PositionY = -1.6;
-var Object9PositionZ = 1.2;
+var Object9PositionX = -0.4;
+var Object9PositionY = -3.7;
+var Object9PositionZ = 0.2;
 var Object9AngleX =0;
 //prawa noga - dół
-var Object10PositionX = -0.9;
-var Object10PositionY = -1.6;
-var Object10PositionZ = 1.2;
+var Object10PositionX = -0.4;
+var Object10PositionY = -3.7;
+var Object10PositionZ = 0.2;
 
 var Object10AngleX = 0;
 
@@ -396,8 +396,14 @@ var Object10Sizedz = 0.4;
 
 var LightPositionX = 0;
 var LightPositionY = 0;
-var LightPositionZ = 3;
-
+var LightPositionZ = 75;
+var backward = false;
+var backwardarm = false;
+var leftfoot = true;
+var leftarm = true;
+var count = 0;
+var armcounter =0;
+var move = true;
 
 function Tick()
 {
@@ -423,11 +429,13 @@ function Tick()
   uMMatrix1 = MatrixMul(uMMatrix1,CreateScaleMatrix(Object1Sizedx,Object1Sizedy,Object1Sizedz));
   uMMatrix1 = MatrixMul(uMMatrix1,CreateTranslationMatrix(Object1Sizedx,0.0,0.0));
   uMMatrix1 = MatrixMul(uMMatrix1,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix1 = MatrixMul(uMMatrix1,CreateRotationXMatrix(Object1AngleX));
   uMMatrix1 = MatrixMul(uMMatrix1,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));  
   
   uMMatrix2 = MatrixMul(uMMatrix2,CreateScaleMatrix(Object2Sizedx,Object2Sizedy,Object2Sizedz));
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object2Sizedx,0.0,0.0));
   uMMatrix2 = MatrixMul(uMMatrix2,CreateRotationZMatrix(Object2AngleZ));
+  uMMatrix2 = MatrixMul(uMMatrix2,CreateRotationXMatrix(Object2AngleX));
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object2PositionX,Object2PositionY,Object2PositionZ));
   
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object1Sizedx,0.0,0.0));
@@ -468,6 +476,10 @@ function Tick()
   uMMatrix5 = MatrixMul(uMMatrix5,CreateRotationXMatrix(Object5AngleX));
   uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object5PositionX,Object5PositionY,Object5PositionZ));
   
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object1Sizedx,0.0,0.0));
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));
+
   uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object4Sizedx,0.0,0.0));
   uMMatrix5 = MatrixMul(uMMatrix5,CreateRotationZMatrix(Object4AngleZ));
   uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object4PositionX,Object4PositionY,Object4PositionZ));
@@ -481,6 +493,10 @@ function Tick()
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object3Sizedx,0.0,0.0));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationZMatrix(Object3AngleZ));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object3PositionX,Object3PositionY,Object3PositionZ));
+
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object1Sizedx,0.0,0.0));
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));
 
   uMMatrix7 = MatrixMul(uMMatrix7,CreateScaleMatrix(Object7Sizedx,Object7Sizedy,Object7Sizedz));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7Sizedx,0.0,0.0));
@@ -517,6 +533,10 @@ function Tick()
   uMMatrix9 = MatrixMul(uMMatrix9,CreateRotationZMatrix(Object7AngleZ));
   uMMatrix9 = MatrixMul(uMMatrix9,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
 
+  uMMatrix9 = MatrixMul(uMMatrix9,CreateTranslationMatrix(Object1Sizedx,0.0,0.0));
+  uMMatrix9 = MatrixMul(uMMatrix9,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix9 = MatrixMul(uMMatrix9,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));
+
   uMMatrix10 = MatrixMul(uMMatrix10,CreateScaleMatrix(Object10Sizedx,Object10Sizedy,Object10Sizedz));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object10Sizedx,0.0,0.0));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationXMatrix(Object10AngleX));
@@ -525,6 +545,10 @@ function Tick()
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object8Sizedx,0.0,0.0));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationZMatrix(Object8AngleZ));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object8PositionX,Object8PositionY,Object8PositionZ));
+
+  uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object1Sizedx,0.0,0.0));
+  uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));
 
   uMMatrix0 = MatrixMul(uMMatrix0,CreateScaleMatrix(LightSize,LightSize,LightSize));
   uMMatrix0 = MatrixMul(uMMatrix0,CreateTranslationMatrix(LightPositionX,LightPositionY,LightPositionZ));
@@ -616,13 +640,124 @@ function Tick()
   gl.uniform1f(gl.getUniformLocation(shaderProgram, "uNormalMul"),-1.0);  
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
-  setTimeout(Tick,100);
+  
+  if(move==true){
+
+  if(leftarm==true){
+    if(backwardarm==false){
+    Object4AngleX=Object4AngleX-1;
+    Object5PositionZ =Object5PositionZ + 0.02;
+    Object5PositionY =Object5PositionY + 0.001;
+    Object5AngleX=Object5AngleX-0.5;
+    if(Object4AngleX<-15){
+      backwardarm=true;
+      armcounter++;
+    }
+    }
+    else{
+      Object4AngleX=Object4AngleX+1;
+      Object5PositionZ =Object5PositionZ - 0.02;
+      Object5PositionY =Object5PositionY - 0.001;
+    Object5AngleX=Object5AngleX+0.5;
+    if(Object4AngleX>15){
+      backwardarm=false;
+      armcounter++;
+    }
+    }
+    if(armcounter>1){
+      armcounter=0;
+      leftarm=false;
+      
+    }
+  }
+  else{
+    if(backwardarm==false){
+    Object3AngleX=Object3AngleX-1;
+    Object6PositionZ =Object6PositionZ + 0.02;
+    Object6PositionY =Object6PositionY + 0.001;
+    Object6AngleX=Object6AngleX-0.5;
+    if(Object3AngleX<-15){
+      backwardarm=true;
+      armcounter++;
+    }
+    }
+    else{
+      Object3AngleX=Object3AngleX+1;
+      Object6PositionZ =Object6PositionZ - 0.02;
+      Object6PositionY =Object6PositionY - 0.001;
+      Object6AngleX=Object6AngleX+0.5;
+      if(Object3AngleX>15){
+      backwardarm=false;
+      armcounter++;
+    }
+    if(armcounter>1){
+      armcounter=0;
+      leftarm=true;
+    }
+    }
+  }
+  if(leftfoot==true){
+  if(backward==false){
+    Object1AngleX = Object1AngleX+0.1;
+    Object2AngleX = Object2AngleX+0.1;
+  Object7AngleX=Object7AngleX-0.75;
+  Object9PositionY =Object9PositionY +0.005;
+  Object9PositionZ =Object9PositionZ +0.01;
+    if(Object7AngleX<-30){
+    backward=true;
+    count = count+1;
+    }
+  }
+  if(backward==true){
+    Object1AngleX = Object1AngleX-0.1;
+    Object2AngleX = Object2AngleX-0.1;
+    Object7AngleX=Object7AngleX+0.75;
+    Object9PositionY =Object9PositionY -0.005;
+    Object9PositionZ =Object9PositionZ -0.01;
+    if(Object7AngleX>-3){
+    backward=false;
+    count = count+1;
+    }
+  }
+  if(count>=2){
+    count = 0;
+    leftfoot=false;
+  }
+  }
+  else{
+  if(backward==false){
+    Object1AngleX = Object1AngleX+0.1;
+    Object2AngleX = Object2AngleX+0.1;
+  Object8AngleX=Object8AngleX-0.75;
+  Object10PositionY =Object10PositionY + 0.005;
+  Object10PositionZ =Object10PositionZ + 0.01;
+    if(Object8AngleX<-30){
+      count = count+1;
+    backward=true;
+    }
+  }
+  if(backward==true){
+    Object1AngleX = Object1AngleX-0.1;
+    Object2AngleX = Object2AngleX-0.1;
+    Object8AngleX=Object8AngleX+0.75;
+    Object10PositionY =Object10PositionY -0.005;
+  Object10PositionZ =Object10PositionZ - 0.01;
+    if(Object8AngleX>-3){
+      count = count+1;
+    backward=false;
+    }
+  }
+  if(count>=2){
+    count = 0;
+    leftfoot=true;
+  }
+  }
+  Object1PositionZ = Object1PositionZ+0.01;
+
+ }
+ setTimeout(Tick,7);
 }
-var backward = false;
-var leftfoot = true;
-var leftarm = true;
-var count = 0;
-var move = true;
+
 function handlekeydown(e)
 {
  // Q W E A S D
@@ -647,87 +782,16 @@ function handlekeydown(e)
  if(e.keyCode==88) Object1AngleZ=Object1AngleZ-0.5;
  if(e.keyCode==90) Object1AngleZ=Object1AngleZ+0.5;
 
- //C V
  if(e.keyCode==67){
-  if(leftarm==true){
-    if(backward==false){
-    Object4AngleX=Object4AngleX-1;
-    Object5PositionZ =Object5PositionZ + 0.02;
-    Object5PositionY =Object5PositionY + 0.001;
-    Object5AngleX=Object5AngleX-0.5;
-    }
-    else{
-      Object4AngleX=Object4AngleX+1;
-      Object5PositionZ =Object5PositionZ - 0.02;
-      Object5PositionY =Object5PositionY - 0.001;
-    Object5AngleX=Object5AngleX+0.5;
-    }
+  if(move==false){
+    move=true
   }
   else{
-    if(backward==false){
-    Object3AngleX=Object3AngleX-1;
-    Object6PositionZ =Object6PositionZ + 0.02;
-    Object6PositionY =Object6PositionY + 0.001;
-    Object6AngleX=Object6AngleX-0.5;
-    }
-    else{
-      Object3AngleX=Object3AngleX+1;
-      Object6PositionZ =Object6PositionZ - 0.02;
-      Object6PositionY =Object6PositionY - 0.001;
-      Object6AngleX=Object6AngleX+0.5;
-    }
-  }
-  if(leftfoot==true){
-  if(backward==false){
-  Object7AngleX=Object7AngleX-1;
-  Object9PositionY =Object9PositionY +0.005;
-  Object9PositionZ =Object9PositionZ +0.01;
-    if(Object7AngleX<-30){
-    backward=true;
-    count = count+1;
-    }
-  }
-  if(backward==true){
-    Object7AngleX=Object7AngleX+1;
-    Object9PositionY =Object9PositionY -0.005;
-    Object9PositionZ =Object9PositionZ -0.01;
-    if(Object7AngleX>-3){
-    backward=false;
-    count = count+1;
-    }
-  }
-  if(count>=2){
-    count = 0;
-    leftarm=false;
-    leftfoot=false;
-  }
-  }
-  else{
-  if(backward==false){
-  Object8AngleX=Object8AngleX-1;
-  Object10PositionY =Object10PositionY + 0.005;
-  Object10PositionZ =Object10PositionZ + 0.01;
-    if(Object8AngleX<-30){
-      count = count+1;
-    backward=true;
-    }
-  }
-  if(backward==true){
-    Object8AngleX=Object8AngleX+1;
-    Object10PositionY =Object10PositionY -0.005;
-  Object10PositionZ =Object10PositionZ - 0.01;
-    if(Object8AngleX>-3){
-      count = count+1;
-    backward=false;
-    }
-  }
-  if(count>=2){
-    count = 0;
-    leftarm=true;
-    leftfoot=true;
-  }
+    move=false
   }
  }
+ //C V
+ 
  //if(e.keyCode==86) Object7AngleX=Object7AngleX+0.5;
  
  //B N
